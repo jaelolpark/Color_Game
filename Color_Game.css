@@ -26,3 +26,7 @@ h1 {
   color: black;
 
 }
+
+.selected {
+  background-color: blue;
+}

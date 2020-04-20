@@ -7,7 +7,16 @@ var matchingColor = document.querySelector('#goalColor');
 var messageDisplay = document.getElementById('message');
 var h1 = document.querySelector('h1')
 var resetBtn = document.querySelector('#reset'); 
+var easy = document.querySelector('#easyBtn');
+var hard = document.querySelector('#hardBtn');
 
+
+// ================================== Easy mode & Hard mode
+
+
+
+
+// ================================== Reset Button work
 resetBtn.addEventListener('click', function() {
   // generate all new colors
   colors = makingRandomNums(6);
@@ -21,6 +30,8 @@ resetBtn.addEventListener('click', function() {
   }
   h1.style.backgroundColor = '#232323';
 })
+
+// =================================== Color quiz display
 
 matchingColor.textContent = pickedColor;
 
@@ -45,6 +56,7 @@ for(var i=0; i<squares.length; i++) {
     }
   })
 }
+// =========================================function
 
 function changeColors(color) {
   // loop through all squares
@@ -53,12 +65,10 @@ function changeColors(color) {
     squares[i].style.backgroundColor = color;
   }
 }
-
 function goalColor() {
   var random = Math.floor(Math.random() * colors.length);
   return colors[random];
 }
-
 function makingRandomNums(num) {
 // make an array
   var arr = [];
