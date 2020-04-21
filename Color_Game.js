@@ -1,6 +1,5 @@
-var colors = makingRandomNums(6);
-
-
+var numOfSq = 6;
+var colors = makingRandomColors(numOfSq);
 var squares = document.querySelectorAll(".square");
 var pickedColor = goalColor();
 var matchingColor = document.querySelector('#goalColor');
@@ -12,14 +11,41 @@ var hard = document.querySelector('#hardBtn');
 
 
 // ================================== Easy mode & Hard mode
+easy.addEventListener('click', function() {
+  easy.classList.add('selected');
+  hard.classList.remove('selected')
+  numOfSq = 3;
+  colors = makingRandomColors(numOfSq);
+  pickedColor = goalColor();
+  matchingColor.textContent = pickedColor;
+  for(var i=0; i < squares.length; i++) {
+    if(colors[i]) {
+      squares[i].style.backgroundColor = colors[i];
+    }
+    else {
+      squares[i].style.display = 'none'; 
+    }
+  }
+})
 
-
+hard.addEventListener('click', function() {
+  hard.classList.add('selected');
+  easy.classList.remove('selected')
+  numOfSq = 6;
+  colors = makingRandomColors(numOfSq);
+  pickedColor = goalColor();
+  matchingColor.textContent = pickedColor;
+  for(var i=0; i < squares.length; i++) {
+    squares[i].style.backgroundColor = colors[i];
+    squares[i].style.display = 'block';
+  }
+})
 
 
 // ================================== Reset Button work
 resetBtn.addEventListener('click', function() {
   // generate all new colors
-  colors = makingRandomNums(6);
+  colors = makingRandomColors(numOfSq);
   // pick a new random color from array
   pickedColor = goalColor();
   // change matchingColor to match picked color
@@ -69,7 +95,7 @@ function goalColor() {
   var random = Math.floor(Math.random() * colors.length);
   return colors[random];
 }
-function makingRandomNums(num) {
+function makingRandomColors(num) {
 // make an array
   var arr = [];
 // repeat num times
