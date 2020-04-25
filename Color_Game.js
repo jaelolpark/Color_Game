@@ -8,38 +8,69 @@ var h1 = document.querySelector('h1')
 var resetBtn = document.querySelector('#reset'); 
 var easy = document.querySelector('#easyBtn');
 var hard = document.querySelector('#hardBtn');
+var modeBtn = document.querySelectorAll('.mode');
 
+for(var i=0; i<modeBtn.length; i++) {
+  modeBtn[i].addEventListener('click', function() {
+    modeBtn[0].classList.remove('selected');
+    modeBtn[1].classList.remove('selected');
+    this.classList.add('selected');
+    this.textContent === 'Easy'? numOfSq = 3 : numOfSq = 6;
+    reset();
+  })
+}
 
-// ================================== Easy mode & Hard mode
-easy.addEventListener('click', function() {
-  easy.classList.add('selected');
-  hard.classList.remove('selected')
-  numOfSq = 3;
+function reset() {
   colors = makingRandomColors(numOfSq);
+  // pick a new random color from array
   pickedColor = goalColor();
+  // change matchingColor to match picked color
   matchingColor.textContent = pickedColor;
-  for(var i=0; i < squares.length; i++) {
+  resetBtn.textContent = 'New Colors'
+  messageDisplay.textContent = '';
+  // change colors of squares  
+  for(var i = 0; i < squares.length; i++) {
     if(colors[i]) {
+      squares[i].style.display = 'block';
       squares[i].style.backgroundColor = colors[i];
     }
     else {
-      squares[i].style.display = 'none'; 
+      squares[i].style.display = 'none'
     }
   }
-})
+  h1.style.backgroundColor = 'steelblue';
+}
 
-hard.addEventListener('click', function() {
-  hard.classList.add('selected');
-  easy.classList.remove('selected')
-  numOfSq = 6;
-  colors = makingRandomColors(numOfSq);
-  pickedColor = goalColor();
-  matchingColor.textContent = pickedColor;
-  for(var i=0; i < squares.length; i++) {
-    squares[i].style.backgroundColor = colors[i];
-    squares[i].style.display = 'block';
-  }
-})
+// ================================== Easy mode & Hard mode
+// easy.addEventListener('click', function() {
+//   easy.classList.add('selected');
+//   hard.classList.remove('selected')
+//   numOfSq = 3;
+//   colors = makingRandomColors(numOfSq);
+//   pickedColor = goalColor();
+//   matchingColor.textContent = pickedColor;
+//   for(var i=0; i < squares.length; i++) {
+//     if(colors[i]) {
+//       squares[i].style.backgroundColor = colors[i];
+//     }
+//     else {
+//       squares[i].style.display = 'none'; 
+//     }
+//   }
+// })
+
+// hard.addEventListener('click', function() {
+//   hard.classList.add('selected');
+//   easy.classList.remove('selected')
+//   numOfSq = 6;
+//   colors = makingRandomColors(numOfSq);
+//   pickedColor = goalColor();
+//   matchingColor.textContent = pickedColor;
+//   for(var i=0; i < squares.length; i++) {
+//     squares[i].style.backgroundColor = colors[i];
+//     squares[i].style.display = 'block';
+//   }
+// })
 
 
 // ================================== Reset Button work
